@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#1744ac">
+<title>ETHICS CHECK! — En vivo</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#fff;background:#1744ac}*{box-sizing:border-box}body{margin:0;min-height:100dvh;background:#1744ac;overflow-x:hidden}
+.wrap{min-height:100dvh;display:grid;grid-template-columns:1fr minmax(260px,30vw);gap:4vw;padding:clamp(20px,3.5vw,56px) max(clamp(20px,4vw,64px),env(safe-area-inset-right)) clamp(20px,3.5vw,56px) max(clamp(20px,4vw,64px),env(safe-area-inset-left));position:relative}
+.accent{position:absolute;pointer-events:none;border:3px solid #ff9b4e;border-radius:50%;opacity:.85}
+.eyebrow{font-size:clamp(11px,1vw,15px);font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.live{display:inline-flex;align-items:center;gap:8px;background:#ff8b39;color:#102b68;border-radius:50px;padding:8px 14px;font-size:clamp(11px,1vw,15px);font-weight:900;letter-spacing:1.5px}
+.dot{width:10px;height:10px;border-radius:50%;background:#d6202a;animation:pulse 1.4s infinite}
+.live.off{background:#ffffff30;color:#fff}.live.off .dot{background:#fff;animation:none;opacity:.6}
+h1{font-size:clamp(40px,5.6vw,92px);font-weight:1000;line-height:.94;letter-spacing:-3px;margin:3vh 0 1vh;text-transform:uppercase}
+.scribble{font-family:Georgia,serif;font-style:italic;font-weight:900;color:#ffba78;font-size:clamp(22px,2.2vw,36px)}
+.total{display:flex;align-items:baseline;gap:14px;margin:3vh 0 4vh}
+.total b{font-size:clamp(56px,7vw,120px);font-weight:1000;letter-spacing:-3px;line-height:1;font-variant-numeric:tabular-nums}
+.total span{font-size:clamp(14px,1.4vw,22px);font-weight:800;opacity:.85}
+.rows{display:flex;flex-direction:column;gap:clamp(14px,2.4vh,28px);position:relative;z-index:1}
+.row{display:grid;grid-template-columns:clamp(54px,5vw,80px) 1fr;gap:clamp(12px,1.4vw,22px);align-items:center;border-radius:20px;padding:clamp(10px,1.4vw,18px);background:#ffffff12;border:1px solid #ffffff30;transition:background .4s,transform .4s}
+.row.flash{background:#ff8b39;transform:scale(1.02)}.row.flash .name,.row.flash .pct{color:#102b68}.row.flash .bar{background:#102b6830}.row.flash .fill{background:#102b68}.row.flash .icon{border-color:#102b68}.row.flash .icon svg{stroke:#102b68}
+.icon{width:100%;aspect-ratio:1;border:3px solid #ff9b4e;border-radius:18px;display:grid;place-items:center;background:#ffffff12}
+.icon svg{width:62%;height:62%;stroke:#ffac6b;fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:10px}
+.name{font-size:clamp(15px,1.7vw,28px);font-weight:950;letter-spacing:-.5px;min-width:0}
+.pct{font-size:clamp(26px,3vw,52px);font-weight:1000;color:#ffab69;font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:clamp(12px,1.5vh,20px);border-radius:20px;background:#ffffff22;overflow:hidden}
+.fill{height:100%;width:0;border-radius:20px;background:#ff8b39;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.count{font-size:clamp(11px,1vw,15px);font-weight:800;opacity:.75;margin-top:8px;font-variant-numeric:tabular-nums}
+aside{display:flex;flex-direction:column;justify-content:center;gap:18px;position:relative;z-index:1}
+.qr{background:#fff8ed;color:#102c66;border-radius:26px;padding:clamp(18px,2vw,30px);text-align:center;box-shadow:0 10px 0 #0e2a6a55}
+.qr h2{font-size:clamp(26px,2.6vw,44px);font-weight:1000;line-height:1;letter-spacing:-1.5px;margin:10px 0 16px;text-transform:uppercase}
+#qrcode{background:#fff;border-radius:16px;padding:12px;display:grid;place-items:center;aspect-ratio:1;max-width:100%}
+#qrcode img,#qrcode canvas{width:100%!important;height:auto!important;max-width:100%}
+.url{font-size:clamp(11px,1vw,15px);font-weight:800;margin-top:12px;word-break:break-all}
+.quote{background:#ff8b39;color:#102b68;padding:16px;border-radius:16px;font-family:Georgia,serif;font-style:italic;font-size:clamp(17px,1.5vw,24px);line-height:1.2;font-weight:800}
+.status{font-size:12px;opacity:.7;margin-top:3vh}
+.toast{position:fixed;left:50%;bottom:calc(28px + env(safe-area-inset-bottom));transform:translate(-50%,140%);background:#fff8ed;color:#102b68;border-radius:18px;padding:16px 24px;font-weight:950;font-size:clamp(16px,1.6vw,26px);box-shadow:0 8px 0 #d86620;transition:transform .5s cubic-bezier(.2,.8,.2,1);z-index:5;max-width:calc(100% - 32px);text-align:center}
+.toast.show{transform:translate(-50%,0)}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
+@media(max-width:860px){.wrap{grid-template-columns:1fr}aside{max-width:420px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="wrap">
+<div class="accent" style="width:220px;height:220px;top:-90px;right:28%"></div>
+<div class="accent" style="width:300px;height:300px;bottom:-170px;left:-120px;border-color:#fff8ed"></div>
+<section>
+<div class="top"><span class="eyebrow">ETHICS CHECK! ⚡ UEP / 2026</span><span class="live" id="live"><span class="dot"></span>EN VIVO</span></div>
+<h1>¿QUÉ TAN <span style="color:#ff9a48">ÉTICOS</span> SOMOS?</h1>
+<div class="scribble">los perfiles del stand, en tiempo real</div>
+<div class="total"><b id="total">0</b><span id="totalLabel">personas participaron</span></div>
+<div class="rows" id="rows"></div>
+<div class="status" id="status">Conectando…</div>
+</section>
+<aside>
+<div class="qr"><div class="eyebrow">¿TODAVÍA NO JUGASTE?</div><h2>ESCANEÁ Y DESCUBRÍ TU PERFIL</h2><div id="qrcode"></div><div class="url" id="url"></div></div>
+<div class="quote">«La integridad se revela cuando decidir no es tan fácil».</div>
+</aside>
+</main>
+<div class="toast" id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+const API='https://abacus.jasoncameron.dev/get/uep-ethicscheck-stand-2026/';
+const QUIZ=new URL('./',location.href).href;
+const P=[
+['guardian','EL GUARDIÁN DE LA INTEGRIDAD','<svg viewBox="0 0 64 64"><path d="M32 5 52 13v17c0 15-9 24-20 30C21 54 12 45 12 30V13L32 5Z"/><path d="m23 32 6 6 13-14"/></svg>'],
+['negociador','EL NEGOCIADOR ÉTICO','<svg viewBox="0 0 64 64"><path d="M32 7v47M17 54h30M9 18h46M18 18 8 38h20L18 18ZM46 18 36 38h20L46 18Z"/><path d="M9 38q9 10 18 0M37 38q9 10 18 0"/></svg>'],
+['explorador','EL EXPLORADOR DE LA ÉTICA','<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"/><path d="m38 26-6 6-12 12 6-18 18-6-6 6ZM32 8v6M32 50v6M8 32h6M50 32h6"/></svg>']];
+const e=id=>document.getElementById(id);
+e('rows').innerHTML=P.map(p=>'<div class="row" id="row-'+p[0]+'"><div class="icon">'+p[2]+'</div><div><div class="head"><span class="name">'+p[1]+'</span><span class="pct" id="pct-'+p[0]+'">0%</span></div><div class="bar"><div class="fill" id="fill-'+p[0]+'"></div></div><div class="count" id="count-'+p[0]+'">0 personas</div></div></div>').join('');
+e('url').textContent=QUIZ.replace(/^https?:\/\//,'');
+try{new QRCode(e('qrcode'),{text:QUIZ,width:512,height:512,colorDark:'#102b68',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(err){e('qrcode').style.display='none'}
+let prev=null,last=0,toastTimer;
+async function get(k){const r=await fetch(API+k,{cache:'no-store'});if(r.status===404)return 0;if(!r.ok)throw new Error(r.status);return (await r.json()).value||0}
+function render(v){
+const total=v.reduce((a,b)=>a+b,0);
+e('total').textContent=total;e('totalLabel').textContent=total===1?'persona participó':'personas participaron';
+P.forEach((p,i)=>{const pc=total?Math.round(v[i]*100/total):0;e('pct-'+p[0]).textContent=pc+'%';e('fill-'+p[0]).style.width=pc+'%';e('count-'+p[0]).textContent=v[i]+(v[i]===1?' persona':' personas')});
+if(prev){P.forEach((p,i)=>{if(v[i]>prev[i]){const row=e('row-'+p[0]);row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),2200);e('toast').textContent='¡Nuevo perfil: '+p[1]+'!';e('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e('toast').classList.remove('show'),3000)}})}
+prev=v}
+async function tick(){
+try{const v=await Promise.all(P.map(p=>get(p[0])));render(v);last=Date.now();e('live').classList.remove('off');e('status').textContent='Se actualiza solo cada 3 segundos'}
+catch(err){e('live').classList.add('off');e('status').textContent='Sin conexión. Reintentando…'}
+setTimeout(tick,3000)}
+tick();
+})();
+</script>
+</body></html>
