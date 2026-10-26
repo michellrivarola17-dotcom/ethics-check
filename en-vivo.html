@@ -46,7 +46,11 @@ h1{font-family:var(--marker);font-weight:400;font-size:clamp(34px,min(4.3vw,8vh)
 .n{--soft:var(--orangeSoft);--tile:var(--orange);--tileInk:#fff;--accent:var(--orange)}
 .x{--soft:var(--yellowSoft);--tile:#fff2d2;--tileInk:var(--navy);--accent:var(--purple)}
 .status{display:flex;align-items:center;gap:10px;font-weight:700;font-size:13px;margin-top:1vh;opacity:.85}
-.status i{width:12px;height:12px;border-radius:50%;background:#2fb560}.status.off i{background:#e2463a}
+.status i{width:12px;height:12px;border-radius:50%;background:#2fb560;flex-shrink:0}.status>span{flex:1 1 auto}
+.reset{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-family:var(--hand);font-weight:700}
+.resetBtn{font:inherit;font-size:13px;color:var(--navy);background:var(--paper);border:2px solid var(--navy);border-radius:30px;padding:5px 14px;cursor:pointer}
+.resetBtn:hover{background:#fff}.resetBtn:focus-visible{outline:3px solid var(--purple);outline-offset:2px}
+.resetBtn.danger{background:#e2463a;color:#fff;border-color:#e2463a}.resetBtn:disabled{opacity:.5;cursor:wait}.status.off i{background:#e2463a}
 aside{display:flex;flex-direction:column;justify-content:center}
 .panel{background:var(--navyPanel);color:#fff;border-radius:30px;padding:clamp(20px,2.2vw,36px);text-align:center;border:3px solid var(--navy);box-shadow:0 10px 0 #14286b33;position:relative}
 .panel .ask{font-weight:800;font-size:clamp(12px,1vw,16px);letter-spacing:2px;text-transform:uppercase;opacity:.9}
@@ -84,7 +88,7 @@ aside{display:flex;flex-direction:column;justify-content:center}
 </div>
 <div class="total"><div class="totalNum"><i class="dd" data-d="crayon" data-c="#2a60dc" data-w="7"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
 <div class="rows" id="rows"></div>
-<div class="status" id="status"><i></i><span id="statusText">Conectando…</span></div>
+<div class="status" id="status"><i></i><span id="statusText">Conectando…</span><div class="reset"><button class="resetBtn" id="resetBtn" type="button">↻ Reiniciar contador</button><span id="resetAsk" hidden>¿Borrar los resultados y empezar de cero?</span><button class="resetBtn danger" id="resetYes" type="button" hidden>Sí, reiniciar</button><button class="resetBtn" id="resetNo" type="button" hidden>Cancelar</button></div></div>
 </section>
 <aside>
 <div class="panel">
@@ -104,7 +108,7 @@ aside{display:flex;flex-direction:column;justify-content:center}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
 (function(){
-const API='https://abacus.jasoncameron.dev/get/uep-ethicscheck-stand-2026/';
+const COUNTER='https://abacus.jasoncameron.dev/',NS='uep-ethicscheck-stand-2026-v2';
 const QUIZ=new URL('./',location.href).href;
 const P=[
 ['guardian','g','EL GUARDIÁN DE LA INTEGRIDAD','Compromiso • Responsabilidad • Honestidad','<svg viewBox="0 0 64 64"><path d="M32 5 52 13v17c0 15-9 24-20 30C21 54 12 45 12 30V13L32 5Z"/><path d="m23 32 6 6 13-14"/></svg>'],
@@ -114,19 +118,27 @@ const e=id=>document.getElementById(id);
 e('rows').innerHTML=P.map(p=>'<div class="row '+p[1]+'" id="row-'+p[0]+'"><div class="tileWrap"><div class="tile">'+p[4]+'</div></div><div class="info"><div class="head"><div><div class="name">'+p[2]+'</div><div class="tags">'+p[3]+'</div></div><span class="pct" id="pct-'+p[0]+'">0%</span></div><div class="bar"><div class="fill" id="fill-'+p[0]+'"></div></div><div class="count" id="count-'+p[0]+'">0 personas</div></div></div>').join('');
 e('url').textContent=QUIZ.replace(/^https?:\/\//,'');
 try{new QRCode(e('qrcode'),{text:QUIZ,width:512,height:512,colorDark:'#14286b',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(err){e('qrcode').style.display='none'}
-let prev=null,toastTimer;
-async function get(k){const r=await fetch(API+k,{cache:'no-store'});if(r.status===404)return 0;if(!r.ok)throw new Error(r.status);return (await r.json()).value||0}
+let prev=null,toastTimer,round=null,epoch=0;
+function toast(t){e('toast').textContent=t;e('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e('toast').classList.remove('show'),3000)}
+async function get(k){const r=await fetch(COUNTER+'get/'+NS+'/'+k,{cache:'no-store'});if(r.status===404)return 0;if(!r.ok)throw new Error(r.status);return (await r.json()).value||0}
 function render(v){
 const total=v.reduce((a,b)=>a+b,0);
 e('total').textContent=total;e('totalLabel').textContent=total===1?'persona participó':'personas participaron';
 P.forEach((p,i)=>{const pc=total?Math.round(v[i]*100/total):0;e('pct-'+p[0]).textContent=pc+'%';e('fill-'+p[0]).style.width=pc+'%';e('count-'+p[0]).textContent=v[i]+(v[i]===1?' persona':' personas')});
-if(prev){P.forEach((p,i)=>{if(v[i]>prev[i]){const row=e('row-'+p[0]);row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),2200);e('toast').textContent='¡Nuevo perfil: '+p[2]+'!';e('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e('toast').classList.remove('show'),3000)}})}
+if(prev){P.forEach((p,i)=>{if(v[i]>prev[i]){const row=e('row-'+p[0]);row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),2200);toast('¡Nuevo perfil: '+p[2]+'!')}})}
 prev=v}
 async function tick(){
-try{const v=await Promise.all(P.map(p=>get(p[0])));render(v);e('live').classList.remove('off');e('status').classList.remove('off');e('statusText').textContent='Se actualiza cada 3 segundos'}
+const my=epoch;try{const r=await get('ronda');const v=await Promise.all(P.map(p=>get(p[0]+'-r'+r)));if(my!==epoch)return setTimeout(tick,3000);if(round!==null&&r!==round)prev=null;round=r;render(v);e('live').classList.remove('off');e('status').classList.remove('off');e('statusText').textContent='Se actualiza cada 3 segundos'}
 catch(err){e('live').classList.add('off');e('status').classList.add('off');e('statusText').textContent='Sin conexión. Reintentando…'}
 setTimeout(tick,3000)}
 tick();
+function ask(on){e('resetBtn').hidden=on;e('resetAsk').hidden=!on;e('resetYes').hidden=!on;e('resetNo').hidden=!on}
+e('resetBtn').onclick=()=>{ask(true);e('resetNo').focus()};
+e('resetNo').onclick=()=>{ask(false);e('resetBtn').focus()};
+e('resetYes').onclick=async()=>{e('resetYes').disabled=e('resetNo').disabled=true;
+try{const r=await fetch(COUNTER+'hit/'+NS+'/ronda',{cache:'no-store'});if(!r.ok)throw new Error(r.status);epoch++;round=(await r.json()).value;prev=null;render([0,0,0]);toast('Contador reiniciado: empezamos de cero')}
+catch(err){toast('No se pudo reiniciar. Revisá la conexión e intentá de nuevo.')}
+e('resetYes').disabled=e('resetNo').disabled=false;ask(false)};
 })();
 </script>
 </body></html>
