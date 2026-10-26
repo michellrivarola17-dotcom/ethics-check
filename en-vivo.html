@@ -24,8 +24,11 @@ h1{font-family:var(--marker);font-weight:400;font-size:clamp(36px,min(4.6vw,7.6v
 h1 .tail{display:inline-block;width:1.6em;vertical-align:middle;margin-left:.15em}
 .sub{font-family:var(--hand);font-weight:600;font-size:clamp(17px,min(1.7vw,3.2vh),30px);margin:1vh 0 0}
 .sub u{text-decoration:none;background:linear-gradient(transparent 78%,#ffb25e 78%,#ffb25e 92%,transparent 92%)}
-.top{display:block!important;position:relative;width:fit-content;max-width:100%;margin-bottom:2vh}
-.top .total{position:absolute;left:3%;bottom:-9%;margin:0}img.topArt{display:block;height:min(37vh,380px);width:auto;max-width:100%}
+.top{display:flex!important;justify-content:space-between;align-items:flex-end;gap:2vw;width:100%;margin-bottom:.4vh}
+.topLeft{display:flex;flex-direction:column;min-width:0}
+img.topText{display:block;height:min(30vh,330px);width:auto;max-width:100%}
+img.topChars{display:block;height:min(33vh,360px);width:auto;max-width:48%;margin-right:1vw}
+.top .total{margin:.4vh 0 0 3%}
 .heroArt{display:flex;align-items:flex-end;justify-content:center;width:min(100%,60vh);justify-self:center;margin-bottom:-1vh}.heroArt img{width:36%;height:auto;margin:0 -3%;position:relative}.heroArt img:nth-child(2){width:34%;margin-bottom:2%;z-index:1}.heroArt img:nth-child(3){width:38%}
 .total{display:flex;align-items:center;gap:16px;margin:.6vh 0 .8vh;position:relative}
 .totalNum{position:relative;min-width:clamp(70px,7vw,120px);text-align:center}
@@ -83,7 +86,7 @@ aside{display:flex;flex-direction:column;justify-content:center}
 <i class="dd" data-d="squiggle" data-c="#ff8a2a" style="width:90px;bottom:40px;right:10px"></i>
 <i class="dd" data-d="burst" data-c="#2a60dc" style="width:50px;bottom:30px;right:30%"></i>
 <section>
-<div class="top"><img class="topArt pic" src="img/encabezado.png" alt="ETHICS CHECK! Resultados en vivo. ¿Qué tan éticos somos? Los perfiles del stand, en tiempo real" width="1500" height="593"><span id="live" hidden></span><div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="22"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div></div>
+<div class="top"><div class="topLeft"><img class="topText pic" src="img/enc_texto.png" alt="ETHICS CHECK! Resultados en vivo. ¿Qué tan éticos somos? Los perfiles del stand, en tiempo real" width="1100" height="598"><span id="live" hidden></span><div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="22"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div></div><img class="topChars pic" src="img/enc_personajes.png" alt="El Guardián, el Negociador y el Explorador" width="1100" height="776"></div>
 <div class="rows" id="rows"></div>
 <div class="status" id="status"><i></i><span id="statusText">Conectando…</span><div class="reset"><button class="resetBtn" id="resetBtn" type="button">↻ Reiniciar contador</button><span id="resetAsk" hidden>¿Borrar los resultados y empezar de cero?</span><button class="resetBtn danger" id="resetYes" type="button" hidden>Sí, reiniciar</button><button class="resetBtn" id="resetNo" type="button" hidden>Cancelar</button></div></div>
 </section>
