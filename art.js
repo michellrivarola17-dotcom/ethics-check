@@ -63,7 +63,9 @@ const D={
  star:['0 0 48 48','<path d="M24 4l6 13 14 2-10 10 3 14-13-7-13 7 3-14L4 19l14-2z"/>'],
  swirl:['0 0 44 40','<path d="M8 30c0-14 22-18 26-6 3 9-8 14-12 8-3-4 2-9 6-6"/>'],
  crayon:['0 0 72 64','<path d="M6 40C20 20 30 14 40 8M8 48C26 26 40 18 56 10M14 54C30 36 46 26 62 18M24 58C38 44 52 36 66 30"/>'],
- underline:['0 0 120 16','<path d="M4 11C34 5 76 4 116 7"/>']
+ underline:['0 0 120 16','<path d="M4 11C34 5 76 4 116 7"/>'],
+ brush:['0 0 160 120','<g filter="url(#rough)" opacity=".9"><path d="M-10 40C30 20 70 8 120-6M-10 62C40 38 90 22 150 2M-6 86C46 60 100 40 166 18M4 108C60 82 112 62 170 42M30 124C76 100 120 84 170 70"/></g>'],
+ arrow:['0 0 120 60','<path d="M4 40C30 54 70 50 100 20" stroke-dasharray="7 8"/><path d="M86 16l16 2-4 16"/>']
 };
 function fill(){
  document.querySelectorAll('.dd').forEach(el=>{const d=D[el.dataset.d];if(!d)return;el.innerHTML='<svg viewBox="'+d[0]+'" fill="none" stroke="'+(el.dataset.c||'#ff8a2a')+'" stroke-width="'+(el.dataset.w||5)+'" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+d[1]+'</svg>'});

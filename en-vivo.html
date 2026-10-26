@@ -4,10 +4,10 @@
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fdf3e3">
 <title>ETHICS CHECK! — En vivo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Nunito:wght@500;600;700;800&family=Permanent+Marker&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mali:wght@500;600;700&family=Nunito:wght@500;600;700;800&family=Chewy&display=swap">
 <style>
 :root{--navy:#14286b;--navyPanel:#1a3487;--blue:#2a60dc;--blueSoft:#dbe7ff;--orange:#ff8a2a;--orangeSoft:#ffe6cc;--yellowSoft:#fdf0c8;--purple:#9b6be0;--cream:#fdf3e3;--paper:#fffaf1;
---marker:'Permanent Marker','Comic Sans MS',cursive;--hand:'Mali','Comic Sans MS',cursive;--body:'Nunito',Arial,Helvetica,sans-serif;font-family:var(--body);color:var(--navy);background:var(--cream)}
+--marker:'Chewy','Comic Sans MS',cursive;--hand:'Mali','Comic Sans MS',cursive;--body:'Nunito',Arial,Helvetica,sans-serif;font-family:var(--body);color:var(--navy);background:var(--cream)}
 *{box-sizing:border-box}body{margin:0;min-height:100dvh;background:var(--cream);overflow-x:hidden}
 .wrap{min-height:100dvh;display:grid;grid-template-columns:1fr minmax(280px,29vw);gap:clamp(20px,3vw,48px);padding:clamp(14px,2.4vh,40px) max(clamp(18px,3.5vw,56px),env(safe-area-inset-right)) clamp(14px,2.4vh,40px) max(clamp(18px,3.5vw,56px),env(safe-area-inset-left));position:relative;overflow:hidden}
 .dd{position:absolute;display:block;pointer-events:none;z-index:0}.dd svg{width:100%;height:auto;display:block}
@@ -15,17 +15,19 @@
 main>section,main>aside{position:relative;z-index:1;min-width:0}
 .top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:end}
 .brandRow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.logo{font-family:var(--marker);font-size:clamp(22px,2.4vw,36px);line-height:.86;text-shadow:2px 2px 0 #fff}
+.logo{display:block;width:clamp(110px,10vw,180px);height:auto}
+img.pic{display:block;max-width:100%;height:auto}
 .pill{background:var(--blueSoft);border-radius:30px;padding:8px 18px;font-family:var(--hand);font-weight:700;font-size:clamp(12px,1.1vw,17px);letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
 .dot{width:10px;height:10px;border-radius:50%;background:#e2463a;animation:pulse 1.4s infinite}
 .pill.off .dot{background:#9aa3bf;animation:none}
-h1{font-family:var(--marker);font-weight:400;font-size:clamp(34px,min(4.3vw,8vh),80px);line-height:.98;margin:1.5vh 0 0;letter-spacing:.5px;text-wrap:balance}
+h1{font-family:var(--marker);font-weight:400;font-size:clamp(36px,min(4.6vw,7.6vh),90px);line-height:.92;margin:1.2vh 0 0;letter-spacing:1px;text-transform:uppercase;text-wrap:balance;position:relative}
+h1 .tail{display:inline-block;width:1.6em;vertical-align:middle;margin-left:.15em}
 .sub{font-family:var(--hand);font-weight:600;font-size:clamp(17px,min(1.7vw,3.2vh),30px);margin:1vh 0 0}
 .sub u{text-decoration:none;background:linear-gradient(transparent 78%,#ffb25e 78%,#ffb25e 92%,transparent 92%)}
-.heroArt{margin-bottom:-1vh;width:min(100%,46vh);justify-self:center}
-.total{display:flex;align-items:center;gap:16px;margin:1.5vh 0 1.5vh;position:relative}
+.heroArt{margin-bottom:-1vh;width:min(100%,50vh);justify-self:center}
+.total{display:flex;align-items:center;gap:16px;margin:.6vh 0 .8vh;position:relative}
 .totalNum{position:relative;min-width:clamp(70px,7vw,120px);text-align:center}
-.totalNum .dd{inset:-8% -12%;width:auto;opacity:.55}
+.totalNum .dd{inset:-6% -22%;width:auto;opacity:.5}
 .totalNum b{position:relative;font-family:var(--marker);font-weight:400;font-size:clamp(46px,min(5.5vw,8.5vh),110px);line-height:1;font-variant-numeric:tabular-nums}
 .totalLbl{font-family:var(--hand);font-weight:700;font-size:clamp(17px,1.8vw,28px);line-height:1.15;max-width:7em}
 .rows{display:flex;flex-direction:column;gap:clamp(8px,1.2vh,16px)}
@@ -50,11 +52,12 @@ h1{font-family:var(--marker);font-weight:400;font-size:clamp(34px,min(4.3vw,8vh)
 .reset{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end;font-family:var(--hand);font-weight:700}
 .resetBtn{font:inherit;font-size:13px;color:var(--navy);background:var(--paper);border:2px solid var(--navy);border-radius:30px;padding:5px 14px;cursor:pointer}
 .resetBtn:hover{background:#fff}.resetBtn:focus-visible{outline:3px solid var(--purple);outline-offset:2px}
-.resetBtn.danger{background:#e2463a;color:#fff;border-color:#e2463a}.resetBtn:disabled{opacity:.5;cursor:wait}.status.off i{background:#e2463a}
+.resetBtn.danger{background:#e2463a;color:#fff;border-color:#e2463a}.resetBtn:disabled{opacity:.5;cursor:wait}.status.off i{background:#e2463a}.status.busy i{background:#f7a531}
 aside{display:flex;flex-direction:column;justify-content:center}
 .panel{background:var(--navyPanel);color:#fff;border-radius:30px;padding:clamp(20px,2.2vw,36px);text-align:center;border:3px solid var(--navy);box-shadow:0 10px 0 #14286b33;position:relative}
 .panel .ask{font-weight:800;font-size:clamp(12px,1vw,16px);letter-spacing:2px;text-transform:uppercase;opacity:.9}
-.panel h2{font-family:var(--marker);font-weight:400;font-size:clamp(28px,2.7vw,46px);line-height:1.02;margin:10px 0 4px;letter-spacing:.5px}
+.panel h2{font-family:var(--marker);font-weight:400;font-size:clamp(30px,2.9vw,52px);line-height:1;margin:10px 0 4px;letter-spacing:1px;text-transform:uppercase}
+.pctWrap{display:flex;align-items:center;gap:6px}.pctWrap .dd{position:relative;width:clamp(18px,1.6vw,28px)}
 .panel .ul{position:relative;width:60%;margin:0 auto 16px}
 #qrcode{background:#fff;border-radius:20px;padding:14px;display:grid;place-items:center;aspect-ratio:1;width:min(100%,46vh);margin:0 auto}
 #qrcode img,#qrcode canvas{width:100%!important;height:auto!important;max-width:100%}
@@ -70,28 +73,31 @@ aside{display:flex;flex-direction:column;justify-content:center}
 </head>
 <body>
 <main class="wrap">
-<i class="dd" data-d="crayon" data-c="#f7c531" style="width:150px;top:-20px;left:58%;opacity:.7"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:170px;top:-40px;left:58%;opacity:.8"></i>
 <i class="dd" data-d="zig" data-c="#ff8a2a" style="width:36px;top:60px;left:10px"></i>
 <i class="dd" data-d="star" data-c="#14286b" data-w="4" style="width:34px;top:36px;left:44%"></i>
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:40px;bottom:16px;left:12px"></i>
-<i class="dd" data-d="crayon" data-c="#f7c531" style="width:170px;bottom:-14px;right:22%;opacity:.7"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:200px;bottom:-40px;right:22%;opacity:.8"></i>
 <i class="dd" data-d="squiggle" data-c="#ff8a2a" style="width:90px;bottom:40px;right:10px"></i>
 <i class="dd" data-d="burst" data-c="#2a60dc" style="width:50px;bottom:30px;right:30%"></i>
 <section>
 <div class="top">
 <div>
-<div class="brandRow"><div class="logo">ETHICS<br>CHECK!</div><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
-<h1>¿Qué tan éticos somos?</h1>
+<div class="brandRow"><img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="285" height="151"><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
+<h1>¿Qué tan éticos somos?<i class="dd tail" data-d="underline" data-c="#ff8a2a" data-w="7" style="position:relative"></i></h1>
 <p class="sub">los <u>perfiles</u> del stand, en tiempo <u>real</u></p>
 </div>
-<div class="heroArt art" data-art="group"></div>
+<img class="heroArt pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="362" height="176">
 </div>
-<div class="total"><div class="totalNum"><i class="dd" data-d="crayon" data-c="#2a60dc" data-w="7"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
+<div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="14"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
 <div class="rows" id="rows"></div>
 <div class="status" id="status"><i></i><span id="statusText">Conectando…</span><div class="reset"><button class="resetBtn" id="resetBtn" type="button">↻ Reiniciar contador</button><span id="resetAsk" hidden>¿Borrar los resultados y empezar de cero?</span><button class="resetBtn danger" id="resetYes" type="button" hidden>Sí, reiniciar</button><button class="resetBtn" id="resetNo" type="button" hidden>Cancelar</button></div></div>
 </section>
 <aside>
 <div class="panel">
+<i class="dd" data-d="brush" data-c="#ff8a2a" data-w="12" style="width:90px;top:-10px;left:-20px;opacity:.9"></i>
+<i class="dd" data-d="brush" data-c="#9b6be0" data-w="12" style="width:80px;top:-24px;right:-24px;opacity:.85"></i>
+<i class="dd" data-d="arrow" data-c="#ffffff" data-w="4" style="width:60px;bottom:110px;right:-4px;transform:scaleX(-1)"></i>
 <i class="dd" data-d="zig" data-c="#ff8a2a" style="width:44px;top:-18px;left:-14px"></i>
 <i class="dd" data-d="squiggle" data-c="#9b6be0" style="width:70px;top:-14px;right:-18px"></i>
 <div class="ask">¿Todavía no jugaste?</div>
@@ -115,8 +121,8 @@ const P=[
 ['negociador','n','EL NEGOCIADOR ÉTICO','Equilibrio • Empatía • Decisiones conscientes','<svg viewBox="0 0 64 64"><path d="M32 7v47M17 54h30M9 18h46M18 18 8 38h20L18 18ZM46 18 36 38h20L46 18Z"/><path d="M9 38q9 10 18 0M37 38q9 10 18 0"/></svg>'],
 ['explorador','x','EL EXPLORADOR DE LA ÉTICA','Curiosidad • Aprendizaje • Pensamiento crítico','<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="24"/><path d="m40 24-5 11-11 5 5-11z"/></svg>']];
 const e=id=>document.getElementById(id);
-e('rows').innerHTML=P.map(p=>'<div class="row '+p[1]+'" id="row-'+p[0]+'"><div class="tileWrap"><div class="tile">'+p[4]+'</div></div><div class="info"><div class="head"><div><div class="name">'+p[2]+'</div><div class="tags">'+p[3]+'</div></div><span class="pct" id="pct-'+p[0]+'">0%</span></div><div class="bar"><div class="fill" id="fill-'+p[0]+'"></div></div><div class="count" id="count-'+p[0]+'">0 personas</div></div></div>').join('');
-e('url').textContent=QUIZ.replace(/^https?:\/\//,'');
+e('rows').innerHTML=P.map(p=>'<div class="row '+p[1]+'" id="row-'+p[0]+'"><div class="tileWrap"><div class="tile">'+p[4]+'</div></div><div class="info"><div class="head"><div><div class="name">'+p[2]+'</div><div class="tags">'+p[3]+'</div></div><span class="pctWrap"><span class="pct" id="pct-'+p[0]+'">0%</span><i class="dd" data-d="burst" data-c="#ff8a2a" data-w="6"></i></span></div><div class="bar"><div class="fill" id="fill-'+p[0]+'"></div></div><div class="count" id="count-'+p[0]+'">0 personas</div></div></div>').join('');
+ART.fill();e('url').textContent=QUIZ.replace(/^https?:\/\//,'');
 try{new QRCode(e('qrcode'),{text:QUIZ,width:512,height:512,colorDark:'#14286b',colorLight:'#ffffff',correctLevel:QRCode.CorrectLevel.M})}catch(err){e('qrcode').style.display='none'}
 let prev=null,toastTimer,round=null,epoch=0;
 function toast(t){e('toast').textContent=t;e('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e('toast').classList.remove('show'),3000)}
@@ -127,17 +133,22 @@ e('total').textContent=total;e('totalLabel').textContent=total===1?'persona part
 P.forEach((p,i)=>{const pc=total?Math.round(v[i]*100/total):0;e('pct-'+p[0]).textContent=pc+'%';e('fill-'+p[0]).style.width=pc+'%';e('count-'+p[0]).textContent=v[i]+(v[i]===1?' persona':' personas')});
 if(prev){P.forEach((p,i)=>{if(v[i]>prev[i]){const row=e('row-'+p[0]);row.classList.add('flash');setTimeout(()=>row.classList.remove('flash'),2200);toast('¡Nuevo perfil: '+p[2]+'!')}})}
 prev=v}
+let polls=0,wait=5000;
+function setStatus(cls,text){e('live').classList.toggle('off',cls==='off');e('status').classList.remove('off','busy');if(cls)e('status').classList.add(cls);e('statusText').textContent=text}
 async function tick(){
-const my=epoch;try{const r=await get('ronda');const v=await Promise.all(P.map(p=>get(p[0]+'-r'+r)));if(my!==epoch)return setTimeout(tick,3000);if(round!==null&&r!==round)prev=null;round=r;render(v);e('live').classList.remove('off');e('status').classList.remove('off');e('statusText').textContent='Se actualiza cada 3 segundos'}
-catch(err){e('live').classList.add('off');e('status').classList.add('off');e('statusText').textContent='Sin conexión. Reintentando…'}
-setTimeout(tick,3000)}
+const my=epoch;try{
+if(round===null||polls%6===0){const r=await get('ronda');if(my===epoch){if(round!==null&&r!==round)prev=null;round=r}}
+polls++;const r=round;const v=await Promise.all(P.map(p=>get(p[0]+'-r'+r)));
+if(my===epoch&&r===round)render(v);wait=5000;setStatus('','Se actualiza cada 5 segundos')}
+catch(err){wait=Math.min(wait*2,30000);if(err.message==='429')setStatus('busy','Servicio ocupado: reintentando en '+Math.round(wait/1000)+' s. Los datos mostrados siguen valiendo.');else setStatus('off','Sin conexión. Reintentando en '+Math.round(wait/1000)+' s…')}
+setTimeout(tick,wait)}
 tick();
 function ask(on){e('resetBtn').hidden=on;e('resetAsk').hidden=!on;e('resetYes').hidden=!on;e('resetNo').hidden=!on}
 e('resetBtn').onclick=()=>{ask(true);e('resetNo').focus()};
 e('resetNo').onclick=()=>{ask(false);e('resetBtn').focus()};
 e('resetYes').onclick=async()=>{e('resetYes').disabled=e('resetNo').disabled=true;
 try{const r=await fetch(COUNTER+'hit/'+NS+'/ronda',{cache:'no-store'});if(!r.ok)throw new Error(r.status);epoch++;round=(await r.json()).value;prev=null;render([0,0,0]);toast('Contador reiniciado: empezamos de cero')}
-catch(err){toast('No se pudo reiniciar. Revisá la conexión e intentá de nuevo.')}
+catch(err){toast(err.message==='429'?'El servicio está ocupado. Probá de nuevo en unos segundos.':'No se pudo reiniciar. Revisá la conexión e intentá de nuevo.')}
 e('resetYes').disabled=e('resetNo').disabled=false;ask(false)};
 })();
 </script>
