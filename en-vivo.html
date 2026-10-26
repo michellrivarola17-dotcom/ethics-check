@@ -15,7 +15,7 @@
 main>section,main>aside{position:relative;z-index:1;min-width:0}
 .top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:end}
 .brandRow{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.logo{display:block;width:clamp(110px,10vw,180px);height:auto}
+.logo{display:block;width:clamp(170px,15vw,280px);height:auto}
 img.pic{display:block;max-width:100%;height:auto}
 .pill{background:var(--blueSoft);border-radius:30px;padding:8px 18px;font-family:var(--hand);font-weight:700;font-size:clamp(12px,1.1vw,17px);letter-spacing:1.5px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px}
 .dot{width:10px;height:10px;border-radius:50%;background:#e2463a;animation:pulse 1.4s infinite}
@@ -24,7 +24,7 @@ h1{font-family:var(--marker);font-weight:400;font-size:clamp(36px,min(4.6vw,7.6v
 h1 .tail{display:inline-block;width:1.6em;vertical-align:middle;margin-left:.15em}
 .sub{font-family:var(--hand);font-weight:600;font-size:clamp(17px,min(1.7vw,3.2vh),30px);margin:1vh 0 0}
 .sub u{text-decoration:none;background:linear-gradient(transparent 78%,#ffb25e 78%,#ffb25e 92%,transparent 92%)}
-.heroArt{margin-bottom:-1vh;width:min(100%,50vh);justify-self:center}
+.heroArt{display:flex;align-items:flex-end;justify-content:center;width:min(100%,60vh);justify-self:center;margin-bottom:-1vh}.heroArt img{width:36%;height:auto;margin:0 -3%;position:relative}.heroArt img:nth-child(2){width:34%;margin-bottom:2%;z-index:1}.heroArt img:nth-child(3){width:38%}
 .total{display:flex;align-items:center;gap:16px;margin:.6vh 0 .8vh;position:relative}
 .totalNum{position:relative;min-width:clamp(70px,7vw,120px);text-align:center}
 .totalNum .dd{inset:-6% -22%;width:auto;opacity:.5}
@@ -83,11 +83,11 @@ aside{display:flex;flex-direction:column;justify-content:center}
 <section>
 <div class="top">
 <div>
-<div class="brandRow"><img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="271" height="161"><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
+<div class="brandRow"><img class="logo pic" src="img/titulo.png" alt="ETHICS CHECK!" width="700" height="99"><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
 <h1>¿Qué tan éticos somos?<i class="dd tail" data-d="underline" data-c="#ff8a2a" data-w="7" style="position:relative"></i></h1>
 <p class="sub">los <u>perfiles</u> del stand, en tiempo <u>real</u></p>
 </div>
-<img class="heroArt pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="374" height="192">
+<div class="heroArt"><img src="img/guardian.png" alt="El Guardián de la integridad" width="760" height="758"><img src="img/negociador.png" alt="El Negociador ético" width="760" height="838"><img src="img/explorador.png" alt="El Explorador de la ética" width="760" height="682"></div>
 </div>
 <div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="22"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
 <div class="rows" id="rows"></div>
