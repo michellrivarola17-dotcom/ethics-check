@@ -12,14 +12,15 @@
 .phone{max-width:450px;min-height:min(760px,calc(100dvh - 24px));margin:auto;border-radius:28px;overflow:hidden;position:relative;background:var(--cream);box-shadow:0 18px 40px #8a5a2030}
 .screen{min-height:min(760px,calc(100dvh - 24px));padding:24px 22px;display:flex;flex-direction:column;position:relative;background:var(--cream);animation:enter .35s cubic-bezier(.2,.8,.2,1)}
 .screen>*{position:relative;z-index:1}.hidden{display:none!important}
-.dd{position:absolute;display:block;pointer-events:none;z-index:0}.dd svg{width:100%;height:auto;display:block}
+.dd{position:absolute;display:block;pointer-events:none;z-index:0}.dd svg{width:100%;height:auto;display:block;overflow:visible}
 .art svg{width:100%;height:auto;display:block}
 /* home */
 .logo{display:block;width:min(285px,76vw);height:auto;margin:22px 0 0 2px}
 img.pic{display:block;max-width:100%;height:auto}
 .bubble{align-self:flex-start;background:var(--blueSoft);border-radius:26px 26px 26px 8px;padding:12px 20px;margin:16px 0 0 18px;font-family:var(--hand);font-weight:700;font-size:clamp(20px,6vw,26px);line-height:1.08;text-transform:uppercase}
 .bubble span{color:var(--orange)}
-.hero{width:100%;margin:12px auto 0}
+.hero{width:110%;max-width:none;margin:26px -5% 0}
+#home .lead{margin-top:18px}
 .lead{font-family:var(--hand);font-weight:600;font-size:17px;line-height:1.35;text-align:center;margin:10px 18px 0}
 .foot{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;text-align:center;opacity:.6;margin:14px 0 0}
 /* shared */
@@ -92,11 +93,11 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:34px;top:300px;left:10px"></i>
 <i class="dd" data-d="crayon" data-c="#f7c531" style="width:70px;bottom:20px;right:-6px;opacity:.7"></i>
 <i class="dd" data-d="crayon" data-c="#2a60dc" style="width:56px;bottom:30px;left:-10px;opacity:.5"></i>
-<i class="dd" data-d="brush" data-c="#2a60dc" data-w="12" style="width:120px;top:-30px;left:-40px;opacity:.85"></i>
-<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:110px;bottom:-30px;right:-36px;opacity:.85"></i>
-<img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="285" height="151">
+<i class="dd" data-d="brush" data-c="#2a60dc" data-w="22" style="width:120px;top:-30px;left:-40px;opacity:.85"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="22" style="width:110px;bottom:-30px;right:-36px;opacity:.85"></i>
+<img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="271" height="161">
 <div class="bubble">¿Qué tan ético<br>sos <span>real</span>mente?</div>
-<img class="hero pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="362" height="176">
+<img class="hero pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="374" height="192">
 <p class="lead">Respondé 6 situaciones y descubrí cuál es tu perfil ético.</p>
 <div class="bottom"><button class="cta" id="start">¡Comenzar! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button><p class="foot">UEP · 2026 · Una experiencia de integridad académica</p></div>
 </section>
@@ -130,7 +131,7 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="squiggle" data-c="#f7c531" style="width:70px;bottom:16%;left:10%"></i>
 <i class="dd" data-d="zig" data-c="#2a60dc" style="width:44px;bottom:20%;right:12%"></i>
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:30px;top:30%;left:12%"></i>
-<img class="walker pic" src="img/walker.png" alt="" width="254" height="193">
+<img class="walker pic" src="img/walker.png" alt="" width="233" height="205">
 <div class="track"><span id="transitBar"></span></div>
 <div class="say">¡Vamos por la siguiente situación!</div>
 </section>
@@ -140,7 +141,7 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="burst" data-c="#ff8a2a" style="width:40px;top:40px;right:26px"></i>
 <i class="dd" data-d="squiggle" data-c="#2a60dc" style="width:70px;bottom:140px;right:6px"></i>
 <span class="chip" style="align-self:center">Desafío completado</span>
-<img class="pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="362" height="176" style="width:100%;margin:18px 0 6px">
+<img class="pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="374" height="192" style="width:100%;margin:18px 0 6px">
 <h2 style="font-size:clamp(30px,8.5vw,38px)">¡Tus decisiones hablan por vos!</h2>
 <p>¿Coinciden tus decisiones con tus valores?</p>
 <div class="quoteBox" style="margin:10px 0">La respuesta podría sorprenderte...</div>
@@ -153,8 +154,8 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:30px;top:230px;right:24px"></i>
 <div class="qhead"><span class="brand">ETHICS CHECK!</span></div>
 <div class="rtop"><span class="pill">TU RESULTADO</span></div>
-<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:110px;top:-34px;right:-40px;opacity:.8"></i>
-<i class="dd" data-d="brush" data-c="#ffffff" data-w="12" style="width:120px;bottom:-30px;left:-44px;opacity:.35"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="22" style="width:110px;top:-34px;right:-40px;opacity:.8"></i>
+<i class="dd" data-d="brush" data-c="#ffffff" data-w="22" style="width:120px;bottom:-30px;left:-44px;opacity:.35"></i>
 <div class="resChar" id="resChar"></div>
 <h2 class="banner" id="name"></h2>
 <div class="resDesc" id="description"></div>

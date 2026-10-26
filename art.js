@@ -6,6 +6,7 @@ const shoe=(x,c)=>'<path d="M'+x+' 200c0-9 8-12 20-10 6 1 8 6 6 10z" fill="'+c+'
 const pat=(id,bg,ln)=>'<pattern id="'+id+'" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(35)"><rect width="8" height="8" fill="'+bg+'"/><path d="M0 2h8" stroke="'+ln+'" stroke-width="2.4"/></pattern>';
 const defs='<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>'+
 '<filter id="rough" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="3"/><feDisplacementMap in="SourceGraphic" scale="3"/></filter>'+
+'<filter id="crayon" x="-15%" y="-15%" width="130%" height="130%"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" seed="7" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.4 1.75" result="m"/><feComposite in="SourceGraphic" in2="m" operator="in" result="g"/><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" seed="4" result="w"/><feDisplacementMap in="g" in2="w" scale="7"/></filter>'+
 pat('hBlue','#2a60dc','#5a8af2')+pat('hOrange','#ff8a2a','#ffb25e')+pat('hCream','#fff2d2','#ffe2a6')+pat('hShield','#1f55d0','#3f74e6')+
 '</defs></svg>';
 
@@ -62,9 +63,10 @@ const D={
  squiggle:['0 0 72 34','<path d="M4 22q8-16 16 0t16 0 16 0 16 0"/>'],
  star:['0 0 48 48','<path d="M24 4l6 13 14 2-10 10 3 14-13-7-13 7 3-14L4 19l14-2z"/>'],
  swirl:['0 0 44 40','<path d="M8 30c0-14 22-18 26-6 3 9-8 14-12 8-3-4 2-9 6-6"/>'],
- crayon:['0 0 72 64','<path d="M6 40C20 20 30 14 40 8M8 48C26 26 40 18 56 10M14 54C30 36 46 26 62 18M24 58C38 44 52 36 66 30"/>'],
+ crayon:['0 0 90 80','<g filter="url(#crayon)"><path d="M12 62 30 16 40 66 58 14 66 60 80 24"/></g>'],
  underline:['0 0 120 16','<path d="M4 11C34 5 76 4 116 7"/>'],
- brush:['0 0 160 120','<g filter="url(#rough)" opacity=".9"><path d="M-10 40C30 20 70 8 120-6M-10 62C40 38 90 22 150 2M-6 86C46 60 100 40 166 18M4 108C60 82 112 62 170 42M30 124C76 100 120 84 170 70"/></g>'],
+ brush:['0 0 200 150','<g filter="url(#crayon)"><path d="M22 118 58 34 70 124 108 26 118 120 152 30 164 112 182 52" opacity=".9"/><path d="M34 98 64 50 84 106 116 44 132 100 160 56" opacity=".55" stroke-width="9"/></g>'],
+ scribble:['0 0 200 120','<g filter="url(#crayon)"><path d="M14 92C40 40 60 30 70 60S88 104 112 66 140 20 156 52 180 90 190 40" opacity=".9"/></g>'],
  arrow:['0 0 120 60','<path d="M4 40C30 54 70 50 100 20" stroke-dasharray="7 8"/><path d="M86 16l16 2-4 16"/>']
 };
 function fill(){

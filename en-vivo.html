@@ -10,7 +10,7 @@
 --marker:'Chewy','Comic Sans MS',cursive;--hand:'Mali','Comic Sans MS',cursive;--body:'Nunito',Arial,Helvetica,sans-serif;font-family:var(--body);color:var(--navy);background:var(--cream)}
 *{box-sizing:border-box}body{margin:0;min-height:100dvh;background:var(--cream);overflow-x:hidden}
 .wrap{min-height:100dvh;display:grid;grid-template-columns:1fr minmax(280px,29vw);gap:clamp(20px,3vw,48px);padding:clamp(14px,2.4vh,40px) max(clamp(18px,3.5vw,56px),env(safe-area-inset-right)) clamp(14px,2.4vh,40px) max(clamp(18px,3.5vw,56px),env(safe-area-inset-left));position:relative;overflow:hidden}
-.dd{position:absolute;display:block;pointer-events:none;z-index:0}.dd svg{width:100%;height:auto;display:block}
+.dd{position:absolute;display:block;pointer-events:none;z-index:0}.dd svg{width:100%;height:auto;display:block;overflow:visible}
 .art svg{width:100%;height:auto;display:block}
 main>section,main>aside{position:relative;z-index:1;min-width:0}
 .top{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:12px;align-items:end}
@@ -73,30 +73,30 @@ aside{display:flex;flex-direction:column;justify-content:center}
 </head>
 <body>
 <main class="wrap">
-<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:170px;top:-40px;left:58%;opacity:.8"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="22" style="width:170px;top:-40px;left:58%;opacity:.8"></i>
 <i class="dd" data-d="zig" data-c="#ff8a2a" style="width:36px;top:60px;left:10px"></i>
 <i class="dd" data-d="star" data-c="#14286b" data-w="4" style="width:34px;top:36px;left:44%"></i>
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:40px;bottom:16px;left:12px"></i>
-<i class="dd" data-d="brush" data-c="#f7c531" data-w="12" style="width:200px;bottom:-40px;right:22%;opacity:.8"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="22" style="width:200px;bottom:-40px;right:22%;opacity:.8"></i>
 <i class="dd" data-d="squiggle" data-c="#ff8a2a" style="width:90px;bottom:40px;right:10px"></i>
 <i class="dd" data-d="burst" data-c="#2a60dc" style="width:50px;bottom:30px;right:30%"></i>
 <section>
 <div class="top">
 <div>
-<div class="brandRow"><img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="285" height="151"><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
+<div class="brandRow"><img class="logo pic" src="img/logo.png" alt="ETHICS CHECK!" width="271" height="161"><span class="pill" id="live"><span class="dot"></span>Resultados en vivo</span></div>
 <h1>¿Qué tan éticos somos?<i class="dd tail" data-d="underline" data-c="#ff8a2a" data-w="7" style="position:relative"></i></h1>
 <p class="sub">los <u>perfiles</u> del stand, en tiempo <u>real</u></p>
 </div>
-<img class="heroArt pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="362" height="176">
+<img class="heroArt pic" src="img/grupo.png" alt="Los tres personajes de ETHICS CHECK!" width="374" height="192">
 </div>
-<div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="14"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
+<div class="total"><div class="totalNum"><i class="dd" data-d="brush" data-c="#5a8af2" data-w="22"></i><b id="total">0</b></div><span class="totalLbl" id="totalLabel">personas participaron</span></div>
 <div class="rows" id="rows"></div>
 <div class="status" id="status"><i></i><span id="statusText">Conectando…</span><div class="reset"><button class="resetBtn" id="resetBtn" type="button">↻ Reiniciar contador</button><span id="resetAsk" hidden>¿Borrar los resultados y empezar de cero?</span><button class="resetBtn danger" id="resetYes" type="button" hidden>Sí, reiniciar</button><button class="resetBtn" id="resetNo" type="button" hidden>Cancelar</button></div></div>
 </section>
 <aside>
 <div class="panel">
-<i class="dd" data-d="brush" data-c="#ff8a2a" data-w="12" style="width:90px;top:-10px;left:-20px;opacity:.9"></i>
-<i class="dd" data-d="brush" data-c="#9b6be0" data-w="12" style="width:80px;top:-24px;right:-24px;opacity:.85"></i>
+<i class="dd" data-d="brush" data-c="#ff8a2a" data-w="22" style="width:90px;top:-10px;left:-20px;opacity:.9"></i>
+<i class="dd" data-d="brush" data-c="#9b6be0" data-w="22" style="width:80px;top:-24px;right:-24px;opacity:.85"></i>
 <i class="dd" data-d="arrow" data-c="#ffffff" data-w="4" style="width:60px;bottom:110px;right:-4px;transform:scaleX(-1)"></i>
 <i class="dd" data-d="zig" data-c="#ff8a2a" style="width:44px;top:-18px;left:-14px"></i>
 <i class="dd" data-d="squiggle" data-c="#9b6be0" style="width:70px;top:-14px;right:-18px"></i>
