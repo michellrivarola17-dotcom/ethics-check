@@ -21,7 +21,13 @@ img.pic{display:block;max-width:100%;height:auto}
 .bubble{align-self:flex-start;background:var(--blueSoft);border-radius:26px 26px 26px 8px;padding:12px 20px;margin:16px 0 0 18px;font-family:var(--hand);font-weight:700;font-size:clamp(20px,6vw,26px);line-height:1.08;text-transform:uppercase}
 .bubble span{color:var(--orange)}
 .trio{display:flex;justify-content:center;align-items:flex-end;margin:22px -8px 0}.trio img{width:37%;height:auto;margin:0 -3.5%;position:relative}.trio img:nth-child(2){width:35%;margin-bottom:12px;z-index:1}.trio img:nth-child(3){width:38%}
-.portada{width:calc(100% + 36px);max-width:none;margin:0 -18px}
+.ptitle{width:calc(100% + 24px);max-width:none;margin:0 -12px}
+.cast{position:relative;width:100%;aspect-ratio:1/.98;margin:10px 0 0}
+.cast img{position:absolute;height:auto;animation:float 3.2s ease-in-out infinite}
+.c-neg{width:54%;left:23%;top:0}
+.c-gua{width:52%;left:-4%;bottom:0;animation-delay:-1s!important}
+.c-exp{width:55%;right:-5%;bottom:3%;animation-delay:-2s!important}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 #home{justify-content:center}
 #home .lead{margin-top:22px;font-size:18px}
 #home .bottom{margin-top:26px}
@@ -97,7 +103,12 @@ p{font-size:15px;line-height:1.5}
 <main class="phone">
 
 <section id="home" class="screen">
-<img class="portada pic" src="img/portada.png" alt="ETHICS CHECK! ¿Qué tan ético sos realmente? Los tres personajes: el Guardián, el Negociador y el Explorador" width="880" height="564">
+<i class="dd" data-d="burst" data-c="#2a60dc" style="width:38px;top:30%;right:14px"></i>
+<i class="dd" data-d="star" data-c="#9b6be0" data-w="4" style="width:26px;top:34%;left:18px"></i>
+<i class="dd" data-d="brush" data-c="#2a60dc" data-w="22" style="width:120px;bottom:-34px;left:-44px;opacity:.85"></i>
+<i class="dd" data-d="brush" data-c="#f7c531" data-w="22" style="width:110px;bottom:-34px;right:-40px;opacity:.85"></i>
+<img class="ptitle pic" src="img/portada_titulo.webp" alt="ETHICS CHECK! ¿Qué tan ético sos realmente?" width="1400" height="269">
+<div class="cast"><img class="c-neg" src="img/negociador.webp" alt="El Negociador ético" width="1100" height="1215"><img class="c-gua" src="img/guardian.webp" alt="El Guardián de la integridad" width="1100" height="1098"><img class="c-exp" src="img/explorador.webp" alt="El Explorador de la ética" width="1100" height="986"></div>
 <p class="lead">Respondé 6 situaciones y descubrí cuál es tu perfil ético.</p>
 <div class="bottom"><button class="cta" id="start">¡Comenzar! <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button><p class="foot">UEP · 2026 · Una experiencia de integridad académica</p></div>
 </section>
@@ -131,7 +142,7 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="squiggle" data-c="#f7c531" style="width:70px;bottom:16%;left:10%"></i>
 <i class="dd" data-d="zig" data-c="#2a60dc" style="width:44px;bottom:20%;right:12%"></i>
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:30px;top:30%;left:12%"></i>
-<img class="walker pic" src="img/negociador.png" alt="" width="760" height="838">
+<img class="walker pic" id="walkerImg" src="img/guardian.webp" alt="" width="1100" height="1098">
 <div class="track"><span id="transitBar"></span></div>
 <div class="say">¡Vamos por la siguiente situación!</div>
 </section>
@@ -141,7 +152,7 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="burst" data-c="#ff8a2a" style="width:40px;top:40px;right:26px"></i>
 <i class="dd" data-d="squiggle" data-c="#2a60dc" style="width:70px;bottom:140px;right:6px"></i>
 <span class="chip" style="align-self:center">Desafío completado</span>
-<div class="trio" style="margin:18px -8px 6px;width:calc(100% + 16px)"><img src="img/guardian.png" alt="El Guardián de la integridad" width="760" height="758"><img src="img/negociador.png" alt="El Negociador ético" width="760" height="838"><img src="img/explorador.png" alt="El Explorador de la ética" width="760" height="682"></div>
+<div class="trio" style="margin:18px -8px 6px;width:calc(100% + 16px)"><img src="img/guardian.webp" alt="El Guardián de la integridad" width="1100" height="1098"><img src="img/negociador.webp" alt="El Negociador ético" width="1100" height="1215"><img src="img/explorador.webp" alt="El Explorador de la ética" width="1100" height="986"></div>
 <h2 style="font-size:clamp(30px,8.5vw,38px)">¡Tus decisiones hablan por vos!</h2>
 <p>¿Coinciden tus decisiones con tus valores?</p>
 <div class="quoteBox" style="margin:10px 0">La respuesta podría sorprenderte...</div>
@@ -191,9 +202,9 @@ function record(k){pending.push({k,r:null});saveQ(pending);flush()}
 flush();
 function toNext(){if(transitTimer===null)return;clearTimeout(transitTimer);transitTimer=null;idx++;draw();go('question')}
 e('start').onclick=()=>go('intro');e('begin').onclick=()=>{draw();go('question')};e('back').onclick=()=>{if(idx===0)go('intro');else{idx--;draw();go('question')}};
-e('next').onclick=()=>{if(selected[idx]===null)return;if(idx===5){go('wait');return}const done=idx+1;e('transitBar').style.transition='none';e('transitBar').style.width=(idx/6*100)+'%';go('transit');void e('transitBar').offsetWidth;e('transitBar').style.transition='';e('transitBar').style.width=(done/6*100)+'%';transitTimer=setTimeout(toNext,1400)};
+e('next').onclick=()=>{if(selected[idx]===null)return;if(idx===5){go('wait');return}const done=idx+1;e('transitBar').style.transition='none';e('transitBar').style.width=(idx/6*100)+'%';e('walkerImg').src='img/'+['guardian','negociador','explorador'][idx%3]+'.webp';go('transit');void e('transitBar').offsetWidth;e('transitBar').style.transition='';e('transitBar').style.width=(done/6*100)+'%';transitTimer=setTimeout(toNext,1400)};
 e('transit').onclick=toNext;
-e('reveal').onclick=()=>{const total=selected.reduce((s,v,i)=>s+q[i][2][v][1],0);const n=total>=13?0:total>=10?1:2;const p=[['EL GUARDIÁN DE LA INTEGRIDAD',['Tus respuestas reflejan un fuerte compromiso con la honestidad, la responsabilidad y la justicia académica. Frente a situaciones difíciles, tendés a priorizar tus principios, incluso cuando hacerlo puede implicar consecuencias incómodas o desventajas personales.','Reconocés que la integridad no depende solamente de cumplir reglas, sino de actuar con coherencia entre tus valores y tus decisiones.'],'«Mis valores no cambian según quién esté mirando».','¿Mantendrías tus principios incluso cuando nadie pudiera descubrir tu decisión?'],['EL NEGOCIADOR ÉTICO',['Tus respuestas sugieren que reconocés la importancia de la integridad académica, pero también considerás las circunstancias, las relaciones personales y las posibles consecuencias antes de decidir.','En determinadas situaciones, la presión o el deseo de ayudar a otros pueden llevarte a realizar concesiones. Tu desafío consiste en encontrar maneras de actuar con empatía sin comprometer la honestidad ni la justicia.'],'«Sé qué es lo correcto, pero decidir no siempre es sencillo».','¿En qué momento una excepción comprensible puede convertirse en una justificación para actuar incorrectamente?'],['EL EXPLORADOR DE LA ÉTICA',['Tus respuestas sugieren que, frente a algunos dilemas académicos, podés dar mayor importancia a las circunstancias inmediatas, los resultados o las necesidades personales que a ciertos principios de integridad.','Esto no define tu carácter ni significa que seas una persona deshonesta. Más bien, invita a reflexionar sobre cómo tus decisiones pueden afectar tu aprendizaje, la confianza de los demás y la justicia dentro del entorno académico.'],'«Cada decisión es una oportunidad para aprender».','¿Qué cambiaría en tus decisiones si pensaras también en sus consecuencias a largo plazo?']][n];result=p[0];record(['guardian','negociador','explorador'][n]);e('result').className='screen r'+n;e('resChar').innerHTML='<img class="pic" src="img/'+['guardian','negociador','explorador'][n]+'.png" alt="">';e('name').textContent=p[0];e('description').replaceChildren(...p[1].map(t=>{const x=document.createElement('p');x.textContent=t;return x}));e('quote').textContent=p[2].replace(/^«/,'').replace(/»\.?$/,'.');['resBrush1','resBrush2'].forEach(id=>e(id).dataset.c=['#2a60dc','#ff8a2a','#9b6be0'][n]);ART.fill();e('reflection').textContent=p[3];go('result')};
+e('reveal').onclick=()=>{const total=selected.reduce((s,v,i)=>s+q[i][2][v][1],0);const n=total>=13?0:total>=10?1:2;const p=[['EL GUARDIÁN DE LA INTEGRIDAD',['Tus respuestas reflejan un fuerte compromiso con la honestidad, la responsabilidad y la justicia académica. Frente a situaciones difíciles, tendés a priorizar tus principios, incluso cuando hacerlo puede implicar consecuencias incómodas o desventajas personales.','Reconocés que la integridad no depende solamente de cumplir reglas, sino de actuar con coherencia entre tus valores y tus decisiones.'],'«Mis valores no cambian según quién esté mirando».','¿Mantendrías tus principios incluso cuando nadie pudiera descubrir tu decisión?'],['EL NEGOCIADOR ÉTICO',['Tus respuestas sugieren que reconocés la importancia de la integridad académica, pero también considerás las circunstancias, las relaciones personales y las posibles consecuencias antes de decidir.','En determinadas situaciones, la presión o el deseo de ayudar a otros pueden llevarte a realizar concesiones. Tu desafío consiste en encontrar maneras de actuar con empatía sin comprometer la honestidad ni la justicia.'],'«Sé qué es lo correcto, pero decidir no siempre es sencillo».','¿En qué momento una excepción comprensible puede convertirse en una justificación para actuar incorrectamente?'],['EL EXPLORADOR DE LA ÉTICA',['Tus respuestas sugieren que, frente a algunos dilemas académicos, podés dar mayor importancia a las circunstancias inmediatas, los resultados o las necesidades personales que a ciertos principios de integridad.','Esto no define tu carácter ni significa que seas una persona deshonesta. Más bien, invita a reflexionar sobre cómo tus decisiones pueden afectar tu aprendizaje, la confianza de los demás y la justicia dentro del entorno académico.'],'«Cada decisión es una oportunidad para aprender».','¿Qué cambiaría en tus decisiones si pensaras también en sus consecuencias a largo plazo?']][n];result=p[0];record(['guardian','negociador','explorador'][n]);e('result').className='screen r'+n;e('resChar').innerHTML='<img class="pic" src="img/'+['guardian','negociador','explorador'][n]+'.webp" alt="">';e('name').textContent=p[0];e('description').replaceChildren(...p[1].map(t=>{const x=document.createElement('p');x.textContent=t;return x}));e('quote').textContent=p[2].replace(/^«/,'').replace(/»\.?$/,'.');['resBrush1','resBrush2'].forEach(id=>e(id).dataset.c=['#2a60dc','#ff8a2a','#9b6be0'][n]);ART.fill();e('reflection').textContent=p[3];go('result')};
 e('restart').onclick=()=>{idx=0;selected=Array(6).fill(null);e('share').textContent='Compartir mi resultado ↗';go('home')};
 e('share').onclick=async()=>{const t='Mi perfil en ETHICS CHECK! es: '+result+' ⚡ ¿Cuál es el tuyo?';try{if(navigator.share){await navigator.share({text:t,url:location.protocol==='https:'?location.href:undefined})}else if(navigator.clipboard){await navigator.clipboard.writeText(t);e('share').textContent='¡Copiado! ✓'}else{window.prompt('Copiá tu resultado:',t)}}catch(err){if(err.name!=='AbortError')window.prompt('Copiá tu resultado:',t)}};
 })();
