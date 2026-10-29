@@ -65,10 +65,9 @@ p{font-size:15px;line-height:1.5}
 .nav .cta{width:auto;flex:0 1 210px}
 /* transit + wait */
 .center{justify-content:center;align-items:center;text-align:center}
-.walkcast{width:min(330px,88vw);margin:0 auto}
-.walkcast img{animation:walk .7s ease-in-out infinite}
-.walkcast .c-gua{animation-delay:-.23s!important}
-.walkcast .c-exp{animation-delay:-.46s!important}
+.walkers{display:grid;place-items:center;min-height:min(220px,60vw)}
+.walker{width:min(190px,52vw);height:auto}
+.walker[hidden]{display:none}
 .ground{width:min(280px,72vw);height:3px;border-radius:3px;background:var(--navy);opacity:.8;margin:-6px auto 0}
 .transit .track{width:min(280px,72vw);margin:34px auto 26px}
 .say{font-family:var(--hand);font-weight:700;font-size:26px;line-height:1.2;max-width:260px}
@@ -145,7 +144,7 @@ p{font-size:15px;line-height:1.5}
 <i class="dd" data-d="squiggle" data-c="#f7c531" style="width:70px;bottom:16%;left:10%"></i>
 <i class="dd" data-d="zig" data-c="#2a60dc" style="width:44px;bottom:9%;right:10%"></i>
 <i class="dd" data-d="swirl" data-c="#9b6be0" style="width:30px;top:30%;left:12%"></i>
-<div class="cast walkcast" aria-hidden="true"><img class="c-neg" src="img/negociador.webp" alt="" width="1100" height="1215"><img class="c-gua" src="img/guardian.webp" alt="" width="1100" height="1098"><img class="c-exp" src="img/explorador.webp" alt="" width="1100" height="986"></div>
+<div class="walkers"><img class="walker pic" data-w="0" src="img/guardian.webp" alt="" width="1100" height="1098"><img class="walker pic" data-w="1" src="img/negociador.webp" alt="" width="1100" height="1215" hidden><img class="walker pic" data-w="2" src="img/explorador.webp" alt="" width="1100" height="986" hidden></div>
 <div class="track"><span id="transitBar"></span></div>
 <div class="say">¡Vamos por la siguiente situación!</div>
 </section>
@@ -205,7 +204,7 @@ function record(k){pending.push({k,r:null});saveQ(pending);flush()}
 flush();
 function toNext(){if(transitTimer===null)return;clearTimeout(transitTimer);transitTimer=null;idx++;draw();go('question')}
 e('start').onclick=()=>go('intro');e('begin').onclick=()=>{draw();go('question')};e('back').onclick=()=>{if(idx===0)go('intro');else{idx--;draw();go('question')}};
-e('next').onclick=()=>{if(selected[idx]===null)return;if(idx===5){go('wait');return}const done=idx+1;e('transitBar').style.transition='none';e('transitBar').style.width=(idx/6*100)+'%';go('transit');void e('transitBar').offsetWidth;e('transitBar').style.transition='';e('transitBar').style.width=(done/6*100)+'%';transitTimer=setTimeout(toNext,1400)};
+e('next').onclick=()=>{if(selected[idx]===null)return;if(idx===5){go('wait');return}const done=idx+1;e('transitBar').style.transition='none';e('transitBar').style.width=(idx/6*100)+'%';document.querySelectorAll('.walker').forEach(w=>w.hidden=+w.dataset.w!==idx%3);go('transit');void e('transitBar').offsetWidth;e('transitBar').style.transition='';e('transitBar').style.width=(done/6*100)+'%';transitTimer=setTimeout(toNext,1400)};
 e('transit').onclick=toNext;
 e('reveal').onclick=()=>{const total=selected.reduce((s,v,i)=>s+q[i][2][v][1],0);const n=total>=13?0:total>=10?1:2;const p=[['EL GUARDIÁN DE LA INTEGRIDAD',['Tus respuestas reflejan un fuerte compromiso con la honestidad, la responsabilidad y la justicia académica. Frente a situaciones difíciles, tendés a priorizar tus principios, incluso cuando hacerlo puede implicar consecuencias incómodas o desventajas personales.','Reconocés que la integridad no depende solamente de cumplir reglas, sino de actuar con coherencia entre tus valores y tus decisiones.'],'«Mis valores no cambian según quién esté mirando».','¿Mantendrías tus principios incluso cuando nadie pudiera descubrir tu decisión?'],['EL NEGOCIADOR ÉTICO',['Tus respuestas sugieren que reconocés la importancia de la integridad académica, pero también considerás las circunstancias, las relaciones personales y las posibles consecuencias antes de decidir.','En determinadas situaciones, la presión o el deseo de ayudar a otros pueden llevarte a realizar concesiones. Tu desafío consiste en encontrar maneras de actuar con empatía sin comprometer la honestidad ni la justicia.'],'«Sé qué es lo correcto, pero decidir no siempre es sencillo».','¿En qué momento una excepción comprensible puede convertirse en una justificación para actuar incorrectamente?'],['EL EXPLORADOR DE LA ÉTICA',['Tus respuestas sugieren que, frente a algunos dilemas académicos, podés dar mayor importancia a las circunstancias inmediatas, los resultados o las necesidades personales que a ciertos principios de integridad.','Esto no define tu carácter ni significa que seas una persona deshonesta. Más bien, invita a reflexionar sobre cómo tus decisiones pueden afectar tu aprendizaje, la confianza de los demás y la justicia dentro del entorno académico.'],'«Cada decisión es una oportunidad para aprender».','¿Qué cambiaría en tus decisiones si pensaras también en sus consecuencias a largo plazo?']][n];result=p[0];record(['guardian','negociador','explorador'][n]);e('result').className='screen r'+n;e('resChar').innerHTML='<img class="pic" src="img/'+['guardian','negociador','explorador'][n]+'.webp" alt="">';e('name').textContent=p[0];e('description').replaceChildren(...p[1].map(t=>{const x=document.createElement('p');x.textContent=t;return x}));e('quote').textContent=p[2].replace(/^«/,'').replace(/»\.?$/,'.');['resBrush1','resBrush2'].forEach(id=>e(id).dataset.c=['#2a60dc','#ff8a2a','#9b6be0'][n]);ART.fill();e('reflection').textContent=p[3];go('result')};
 e('restart').onclick=()=>{idx=0;selected=Array(6).fill(null);e('share').textContent='Compartir mi resultado ↗';go('home')};
